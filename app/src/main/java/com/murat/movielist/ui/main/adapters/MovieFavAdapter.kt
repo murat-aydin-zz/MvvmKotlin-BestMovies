@@ -1,4 +1,4 @@
-package com.murat.movielist.ui.main.Adapter
+package com.murat.movielist.ui.main.adapters
 
 import android.app.Activity
 import android.databinding.DataBindingUtil
@@ -8,12 +8,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.murat.movielist.R
 import com.murat.movielist.core.BaseAdapter
-import com.murat.movielist.databinding.RvMovieItemBinding
+import com.murat.movielist.databinding.RvMovieFavItemBinding
 import com.murat.movielist.db.entitiy.MovieEntity
-import com.murat.movielist.ui.main.MainActivityViewModel
+import com.murat.movielist.ui.main.main.MainActivityViewModel
 
 
-class MovieAdapter(private val callback: (MovieEntity, Int) -> Unit) : BaseAdapter<MovieEntity?>(object : DiffUtil.ItemCallback<MovieEntity?>() {
+class MovieFavAdapter(private val callback: (MovieEntity, Int) -> Unit) : BaseAdapter<MovieEntity?>(object : DiffUtil.ItemCallback<MovieEntity?>() {
     override fun areContentsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
         return oldItem == newItem
     }
@@ -24,9 +24,9 @@ class MovieAdapter(private val callback: (MovieEntity, Int) -> Unit) : BaseAdapt
 
 }) {
     override fun createBinding(parent: ViewGroup, viewType: Int): ViewDataBinding {
-        val mBinding = DataBindingUtil.inflate<RvMovieItemBinding>(
+        val mBinding = DataBindingUtil.inflate<RvMovieFavItemBinding>(
             LayoutInflater.from(parent.context),
-            R.layout.rv_movie_item,
+            R.layout.rv_movie_fav_item,
             parent,
             false
         )
@@ -45,7 +45,7 @@ class MovieAdapter(private val callback: (MovieEntity, Int) -> Unit) : BaseAdapt
     }
 
     override fun bind(binding: ViewDataBinding, position: Int) {
-        getItem(position)?.let { (binding as RvMovieItemBinding).viewModel?.setModel(it, position) }
+        getItem(position)?.let { (binding as RvMovieFavItemBinding).viewModel?.setModel(it, position) }
         binding.executePendingBindings()
     }
 }

@@ -1,4 +1,4 @@
-package com.murat.movielist.ui.main
+package com.murat.movielist.ui.main.main
 
 import android.arch.lifecycle.Observer
 import android.content.Intent
@@ -20,10 +20,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 import com.murat.movielist.R
 import com.murat.movielist.core.Constants.NetworkService.FAVORITE_TASK
 import com.murat.movielist.db.entitiy.MovieEntity
-import com.murat.movielist.ui.main.Adapter.MovieAdapter
+import com.murat.movielist.ui.main.adapters.MovieAdapter
 
 
-class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(MainActivityViewModel::class.java) {
+class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
+    MainActivityViewModel::class.java) {
     private var page =1
     var activeTab: Int = 1
     override fun initViewModel(viewModel: MainActivityViewModel) {

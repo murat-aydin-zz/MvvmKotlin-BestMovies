@@ -17,8 +17,8 @@ import com.murat.movielist.core.Constants
 import com.murat.movielist.core.Resource
 import com.murat.movielist.databinding.ActivityDetailsBinding
 import com.murat.movielist.service.response.*
-import com.murat.movielist.ui.main.Adapter.CastRecyclerViewAdapter
-import com.murat.movielist.ui.main.Adapter.TrailerRecyclerViewAdapter
+import com.murat.movielist.ui.main.adapters.CastRecyclerViewAdapter
+import com.murat.movielist.ui.main.adapters.TrailerRecyclerViewAdapter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_details.*
 import java.text.ParseException

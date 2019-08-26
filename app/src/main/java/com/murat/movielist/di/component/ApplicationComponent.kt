@@ -6,7 +6,7 @@ import com.murat.movielist.MyApplication
 import com.murat.movielist.di.module.ApplicationModule
 import com.murat.movielist.di.module.DatabaseModule
 import com.murat.movielist.di.module.NetModule
-import com.murat.movielist.ui.main.MainActivityViewModel
+import com.murat.movielist.ui.main.main.MainActivityViewModel
 import com.murat.movielist.ui.main.details.DetailsActivityViewModel
 import com.murat.movielist.ui.main.splash.SplashActivityViewModel
 import dagger.Component

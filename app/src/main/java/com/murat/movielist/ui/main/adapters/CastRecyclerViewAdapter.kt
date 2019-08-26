@@ -1,4 +1,4 @@
-package com.murat.movielist.ui.main.Adapter
+package com.murat.movielist.ui.main.adapters
 
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding

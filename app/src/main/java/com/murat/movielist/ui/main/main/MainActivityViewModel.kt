@@ -1,4 +1,4 @@
-package com.murat.movielist.ui.main
+package com.murat.movielist.ui.main.main
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData

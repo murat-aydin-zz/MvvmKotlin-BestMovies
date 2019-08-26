@@ -5,7 +5,7 @@
     <data>
         <variable
                 name="viewModel"
-                type="com.murat.movielist.ui.main.MainActivityViewModel"/>
+                type="com.murat.movielist.ui.main.main.MainActivityViewModel"/>
     </data>
 
 
