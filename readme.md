@@ -2,6 +2,11 @@
 This project was developed with kotlin mvvm for movie listing, reviewing movie details, watching trailers and adding movies to favorites
 
 
+<img src="https://user-images.githubusercontent.com/22686983/63698260-29ad1700-c827-11e9-91c8-6d5c80301513.png" width="250" height="450">
+<img src="https://user-images.githubusercontent.com/22686983/63698634-eacb9100-c827-11e9-95ed-4c3bba0b4e83.png" width="250" height="450">
+<img src="https://user-images.githubusercontent.com/22686983/63698646-f0c17200-c827-11e9-8f84-cad8af40283b.png" width="250" height="450">
+
+
 
 ## Based On
 - [General Mobile Kotlin-Android MVVM Starter](https://github.com/general-mobile/kotlin-android-mvvm-starter)
