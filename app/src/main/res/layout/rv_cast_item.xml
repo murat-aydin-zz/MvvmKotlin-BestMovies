@@ -1,0 +1,43 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="viewModel"
+                type="com.murat.movielist.ui.main.details.DetailsActivityViewModel" />
+
+    </data>
+<android.support.v7.widget.CardView
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="106dp"
+    android:layout_height="209dp"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="8dp"
+    app:cardBackgroundColor="@color/colorPrimaryDark"
+    app:cardElevation="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/cast_iv"
+            android:layout_width="match_parent"
+            android:layout_height="159dp"
+            android:contentDescription="Cast Images"
+            android:scaleType="centerCrop"
+            app:setDrawableLink="@{viewModel.item.getProfilePath}"
+        />
+        <TextView
+            android:id="@+id/cast_tv"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:padding="4dp"
+            android:textColor="#FFF"
+            android:textSize="14sp"
+            tools:text="@{viewModel.item.getName}"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
+</layout>
