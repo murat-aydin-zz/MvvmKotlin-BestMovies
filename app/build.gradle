@@ -77,7 +77,10 @@ dependencies {
     implementation "jp.wasabeef:recyclerview-animators:2.3.0"
     //timber
     implementation rootProject.ext.timber
-
+    implementation rootProject.ext.autoDispose
+    implementation rootProject.ext.autoDisposeAndroidExt
+    implementation rootProject.ext.autoDisposeLifecycle
+    implementation rootProject.ext.autoDisposeArchComponents
     //di
     implementation rootProject.ext.dagger
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'

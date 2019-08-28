@@ -9,7 +9,6 @@ import javax.inject.Inject
 open class BaseViewModel(app: Application) : RxAwareViewModel(app) {
 
     var progressLiveData = MutableLiveData<Boolean>()
-    var added = MutableLiveData<Boolean>()
 
     @Inject
     lateinit var baseApi: TmdbAPI

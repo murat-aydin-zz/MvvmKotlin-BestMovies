@@ -8,6 +8,7 @@ import com.murat.movielist.di.module.DatabaseModule
 import com.murat.movielist.di.module.NetModule
 import com.murat.movielist.ui.main.main.MainActivityViewModel
 import com.murat.movielist.ui.main.details.DetailsActivityViewModel
+import com.murat.movielist.ui.main.persondetail.PersonActivityViewModel
 import com.murat.movielist.ui.main.splash.SplashActivityViewModel
 import dagger.Component
 import javax.inject.Singleton
@@ -23,4 +24,5 @@ interface ApplicationComponent {
     fun inject(mainActivityViewModel: MainActivityViewModel)
     fun inject(detailsActivityViewModel: DetailsActivityViewModel)
     fun inject(splashActivityViewModel: SplashActivityViewModel)
+    fun inject(personActivityViewModel: PersonActivityViewModel)
 }

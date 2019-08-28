@@ -24,12 +24,15 @@ class DetailsActivityViewModel(app: Application) : BaseViewModel(app) {
 
     val getTrailerData = MutableLiveData<Resource<TMDBTrailerResponse>>()
 
-    var favSuccess = MutableLiveData<Boolean>().apply { setValue(false) }
+
+    var trailerVisibility = MutableLiveData<Boolean>().apply { setValue(false) }
 
     init {
         (app as? MyApplication)?.component?.inject(this)
     }
     var item = ObservableField<Cast>()
+    var detailsItem = ObservableField<TMDBDetailsResponse>()
+
     var position = -1
 
     var itemTrailer = ObservableField<Trailer>()
@@ -55,7 +58,7 @@ class DetailsActivityViewModel(app: Application) : BaseViewModel(app) {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it?.status) {
-                    Status.SUCCESS -> getMoreDetailData.postValue(it)
+                    Status.SUCCESS -> detailsItem.set(it.data)
                     Status.LOADING -> ""
                     Status.ERROR -> Timber.e(it.error)
                 }
@@ -74,6 +77,7 @@ class DetailsActivityViewModel(app: Application) : BaseViewModel(app) {
                     Status.SUCCESS -> getCreditsData.postValue(it)
                     Status.LOADING -> ""
                     Status.ERROR -> Timber.e(it.error)
+
                 }
             })
     }
@@ -82,7 +86,7 @@ class DetailsActivityViewModel(app: Application) : BaseViewModel(app) {
             .subscribeOn(Schedulers.io())
             .map { Resource.success(it) }
             .onErrorReturn { Resource.error(it) }
-            .doOnSubscribe { progressLiveData.postValue(true) }
+            .doOnSubscribe { trailerVisibility.postValue(true)  }
             .doOnTerminate { progressLiveData.postValue(false) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
@@ -90,6 +94,7 @@ class DetailsActivityViewModel(app: Application) : BaseViewModel(app) {
                     Status.SUCCESS -> getTrailerData.postValue(it)
                     Status.LOADING -> ""
                     Status.ERROR -> Timber.e(it.error)
+
                 }
             })
     }

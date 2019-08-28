@@ -32,4 +32,7 @@ interface TmdbAPI  {
 
     @GET("movie/{movie_id}/videos")
     fun getTrailers(@Path("movie_id") MOVIE_ID: Int, @Query("api_key") API_KEY: String, @Query("language") LANGUAGE: String): Observable<TMDBTrailerResponse>
+
+    @GET("person/{person_id}")
+    fun getPerson(@Path("person_id") PERSON_ID: Int, @Query("api_key") API_KEY: String): Observable<Person>
 }

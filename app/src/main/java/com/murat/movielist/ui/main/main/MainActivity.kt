@@ -4,6 +4,8 @@ import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.content.res.Configuration
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.util.Log
 import com.murat.movielist.BuildConfig
 import com.murat.movielist.core.BaseActivity
 import com.murat.movielist.core.Constants.NetworkService.NOW_PLAYING_TASK
@@ -21,12 +23,21 @@ import com.murat.movielist.R
 import com.murat.movielist.core.Constants.NetworkService.FAVORITE_TASK
 import com.murat.movielist.db.entitiy.MovieEntity
 import com.murat.movielist.ui.main.adapters.MovieAdapter
+import com.murat.movielist.utils.PaginationScrollListener
 
 
 class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
     MainActivityViewModel::class.java) {
-    private var page =1
+    var page =1
     var activeTab: Int = 1
+    var data: TMDBResponse? = null
+    var movie: ArrayList<Movie>? = null
+    var movieEntity: ArrayList<MovieEntity>? = null
+    var isLastPage: Boolean = false
+    var isLoading: Boolean = false
+
+    override fun getLayoutRes() = R.layout.activity_main
+
     override fun initViewModel(viewModel: MainActivityViewModel) {
         binding.viewModel = viewModel
         getMovies(activeTab, "",page)
@@ -109,12 +120,6 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
         }
     }
 
-    var data: TMDBResponse? = null
-    var movie: ArrayList<Movie>? = null
-    var movieEntity: ArrayList<MovieEntity>? = null
-    override fun getLayoutRes() = R.layout.activity_main
-
-
     private fun getMovies(taskId: Int?, taskQuery: String,page: Int) {
         when (taskId) {
             SEARCH_TASK -> viewModel.searchMovies(BuildConfig.API_TOKEN,"tr",page,taskQuery)
@@ -128,7 +133,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
         if (viewModel.getMoviesLiveData.hasActiveObservers())
             viewModel.getMoviesLiveData.removeObservers(this)
 
-        binding.rvMovies.adapter =
+        val adapter =
             MovieAdapter { item, position ->
                 val intent = Intent(application, DetailsActivity::class.java)
                 intent.putExtra("movie", item)
@@ -136,6 +141,13 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
                 application.startActivity(intent)
 
             }
+        var columns = 2
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
+            columns = 4
+        val layoutManager = GridLayoutManager(applicationContext, columns, GridLayoutManager.VERTICAL, false)
+
+        binding.rvMovies.layoutManager = layoutManager
+        binding.rvMovies.adapter = adapter
 
         viewModel.getMoviesLiveData.observe(this@MainActivity, Observer<Resource<TMDBResponse>> {
             it.let {
@@ -144,15 +156,23 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
             }
         })
 
-        var columns = 2
-        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
-            columns = 4
-        binding.rvMovies.layoutManager = GridLayoutManager(applicationContext, columns, GridLayoutManager.VERTICAL, false)
+        binding.rvMovies.addOnScrollListener(object : PaginationScrollListener(layoutManager) {
+            override fun isLastPage(): Boolean {
+                return isLastPage
+            }
 
+            override fun isLoading(): Boolean {
+                return isLoading
+            }
 
+            override fun loadMoreItems() {
+                if (movieEntity?.size != layoutManager.itemCount)
+                  page.plus(page)
+                if(activeTab != NOW_PLAYING_TASK)
+                  getMovies(activeTab, "", page.inc())
+            }
+        })
     }
-
-
 
     override fun onBackPressed() {
         if (search_view!!.isSearchBarFocused)

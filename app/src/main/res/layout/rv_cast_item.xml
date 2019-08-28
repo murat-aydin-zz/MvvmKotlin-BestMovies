@@ -32,12 +32,21 @@
         <TextView
             android:id="@+id/cast_tv"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="25dp"
             android:gravity="center"
             android:padding="4dp"
             android:textColor="#FFF"
             android:textSize="14sp"
             tools:text="@{viewModel.item.getName}"/>
+        <TextView
+            android:id="@+id/cast_tv_character"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:gravity="center"
+            android:padding="4dp"
+            android:textColor="#FFF"
+            android:textSize="14sp"
+            tools:text="@{viewModel.item.getCharacter}"/>
     </LinearLayout>
 </android.support.v7.widget.CardView>
 </layout>

@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.WindowManager
 import com.murat.movielist.R
 import com.murat.movielist.utils.ConnectivityReceiver
+import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
 
 abstract class BaseActivity<ViewModel : BaseViewModel, DataBinding : ViewDataBinding>(private val mViewModelClass: Class<ViewModel>) :
     AppCompatActivity() , ConnectivityReceiver.ConnectivityReceiverListener {

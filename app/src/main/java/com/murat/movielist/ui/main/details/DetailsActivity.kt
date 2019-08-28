@@ -28,6 +28,10 @@ import kotlin.math.abs
 import com.murat.movielist.db.entitiy.MovieEntity
 import kotlinx.android.synthetic.main.activity_details.poster_image_view
 import org.jetbrains.anko.doAsync
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import com.murat.movielist.ui.main.persondetail.PersonActivity
+import com.murat.movielist.ui.main.persondetail.PersonActivityViewModel
 
 
 class DetailsActivity :  BaseActivity<DetailsActivityViewModel, ActivityDetailsBinding>(DetailsActivityViewModel::class.java) {
@@ -43,7 +47,6 @@ class DetailsActivity :  BaseActivity<DetailsActivityViewModel, ActivityDetailsB
 
         setAppBar()
         fillUI()
-        fetchMoreDetail()
         fetchCredits()
         fetchDetails()
 
@@ -58,18 +61,13 @@ class DetailsActivity :  BaseActivity<DetailsActivityViewModel, ActivityDetailsB
         viewModel.getTrailerData.observe(this@DetailsActivity, Observer<Resource<TMDBTrailerResponse>> {
             it.let {
                 trailer = it?.data?.results
-                if(trailer?.size !=0){
-                    trailers_hint_tv.visibility =View.VISIBLE
-                    trailer_label_tv.visibility =View.VISIBLE
-                }
                 (binding.rvTrailers.adapter as TrailerRecyclerViewAdapter).submitList(trailer as List<Trailer?>?)
-
 
             }
         })
-        val adapter =
+           val adapter =
             TrailerRecyclerViewAdapter { item, position ->
-                val youtubeUri = Uri.parse("https://www.youtube.com/watch?v=${item.name}")
+                val youtubeUri = Uri.parse("https://www.youtube.com/embed/${trailer?.get(0)?.key}")
                 val openYoutube = Intent(Intent.ACTION_VIEW, youtubeUri)
                 startActivity(openYoutube)
             }
@@ -78,9 +76,10 @@ class DetailsActivity :  BaseActivity<DetailsActivityViewModel, ActivityDetailsB
     }
 
     private fun fetchCredits() {
+        viewModel.getMoreDetail(movie!!.id, BuildConfig.API_TOKEN,"tr")
         viewModel.getCredits(movie!!.id, BuildConfig.API_TOKEN)
-        if (viewModel.getMoreDetailData.hasActiveObservers())
-            viewModel.getMoreDetailData.removeObservers(this)
+        if (viewModel.getCreditsData.hasActiveObservers())
+            viewModel.getCreditsData.removeObservers(this)
 
         viewModel.getCreditsData.observe(this@DetailsActivity, Observer<Resource<TMDBCreditsResponse>> {
             it.let {
@@ -97,29 +96,20 @@ class DetailsActivity :  BaseActivity<DetailsActivityViewModel, ActivityDetailsB
         })
         val adapter =
             CastRecyclerViewAdapter { item, position ->
-                val uri =
+
+                val intent = Intent(application, PersonActivity::class.java)
+                intent.putExtra("personId", item.id)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                application.startActivity(intent)
+              /*  val uri =
                     Uri.parse("https://www.google.com/search?q=${cast?.get(position)?.name}. movies")
                 val actorMoviesIntent = Intent(Intent.ACTION_VIEW, uri)
-                startActivity(actorMoviesIntent)
+                startActivity(actorMoviesIntent)*/
 
 
             }
         binding.castRv.adapter = adapter
         binding.castRv.layoutManager = GridLayoutManager(applicationContext, 2, GridLayoutManager.HORIZONTAL, false)
-    }
-
-    private fun fetchMoreDetail() {
-        viewModel.getMoreDetail(movie!!.id, BuildConfig.API_TOKEN,"tr")
-        if (viewModel.getMoreDetailData.hasActiveObservers())
-            viewModel.getMoreDetailData.removeObservers(this)
-
-        viewModel.getMoreDetailData.observe(this@DetailsActivity, Observer<Resource<TMDBDetailsResponse>> {
-            it.let {
-                tagline_tv.text = it?.data?.tagline
-                votes_value_tv.text = it?.data?.voteCount.toString()
-                minutes_value_tv.text = it?.data?.runtime.toString()
-            }
-        })
     }
 
     private fun fillUI() {
@@ -143,7 +133,7 @@ class DetailsActivity :  BaseActivity<DetailsActivityViewModel, ActivityDetailsB
                     viewModel.db.movieDao().insertMovie(movie!!)
 
                 }else{
-                    var deleted = viewModel.db.movieDao().deleteMovie(movie?.id!!)
+                    viewModel.db.movieDao().deleteMovie(movie?.id!!)
                     binding.favButton.setImageResource(R.drawable.ic_favorite_border)
                 }
             }

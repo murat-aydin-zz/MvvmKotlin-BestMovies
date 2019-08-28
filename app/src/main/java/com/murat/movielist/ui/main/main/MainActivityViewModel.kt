@@ -3,13 +3,10 @@ package com.murat.movielist.ui.main.main
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableField
-import android.util.Log
 import com.murat.movielist.MyApplication
 import com.murat.movielist.core.*
 import com.murat.movielist.db.entitiy.MovieEntity
-import com.murat.movielist.service.response.Movie
 import com.murat.movielist.service.response.TMDBResponse
-import com.murat.movielist.service.response.Trailer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
