@@ -1,6 +1,7 @@
 package com.murat.movielist.di.module
 
 import android.os.Environment
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -26,10 +27,11 @@ class NetModule {
     fun provideOkHttpClient(): OkHttpClient {
         val cache = Cache(Environment.getDownloadCacheDirectory(), 10 * 1024 * 1024)
         return OkHttpClient.Builder()
-                .readTimeout(1, TimeUnit.MINUTES)
-                .writeTimeout(1, TimeUnit.MINUTES)
-                .cache(cache)
-                .build()
+            .addNetworkInterceptor(StethoInterceptor())
+            .readTimeout(1, TimeUnit.MINUTES)
+            .writeTimeout(1, TimeUnit.MINUTES)
+            .cache(cache)
+            .build()
     }
 
     @Singleton
@@ -37,9 +39,10 @@ class NetModule {
     @Named("non_cached")
     fun provideNonCachedOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
-                .readTimeout(1, TimeUnit.MINUTES)
-                .writeTimeout(1, TimeUnit.MINUTES)
-                .build()
+            .addNetworkInterceptor(StethoInterceptor())
+            .readTimeout(1, TimeUnit.MINUTES)
+            .writeTimeout(1, TimeUnit.MINUTES)
+            .build()
     }
 
     @Provides
@@ -54,9 +57,9 @@ class NetModule {
     @Provides
     fun provideRetrofit(gson: Gson, @Named("cached") client: OkHttpClient): Retrofit.Builder {
         return Retrofit.Builder()
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
     }
 
     @Provides

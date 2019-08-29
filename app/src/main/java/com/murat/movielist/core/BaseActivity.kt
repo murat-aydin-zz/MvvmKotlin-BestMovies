@@ -37,8 +37,11 @@ abstract class BaseActivity<ViewModel : BaseViewModel, DataBinding : ViewDataBin
         super.onCreate(savedInstanceState)
         onInject()
         registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+        init()
 
     }
+
+    open fun init() {}
 
     override fun onResume() {
         super.onResume()

@@ -29,11 +29,13 @@ class PersonActivity :  BaseActivity<PersonActivityViewModel, ActivityPersonBind
 
     override fun initViewModel(viewModel: PersonActivityViewModel) {
         binding.viewModel = viewModel
-        setAppBar()
-        fetchPerson()
-
     }
 
+    override fun init() {
+        super.init()
+        setAppBar()
+        fetchPerson()
+    }
     private fun fetchPerson() {
         val personId = intent.getIntExtra("personId",0)
 

@@ -44,15 +44,16 @@ class DetailsActivity :  BaseActivity<DetailsActivityViewModel, ActivityDetailsB
 
     override fun initViewModel(viewModel: DetailsActivityViewModel) {
         binding.viewModel = viewModel
+    }
+
+    override fun init() {
+        super.init()
 
         setAppBar()
         fillUI()
         fetchCredits()
         fetchDetails()
-
     }
-
-    
     private fun fetchDetails() {
         viewModel.getTrailers(movie!!.id, BuildConfig.API_TOKEN,"tr")
         if (viewModel.getTrailerData.hasActiveObservers())

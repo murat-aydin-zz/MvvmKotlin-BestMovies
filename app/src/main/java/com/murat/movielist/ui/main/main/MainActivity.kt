@@ -38,8 +38,15 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
 
     override fun getLayoutRes() = R.layout.activity_main
 
+
     override fun initViewModel(viewModel: MainActivityViewModel) {
         binding.viewModel = viewModel
+    }
+
+
+    override fun init() {
+        super.init()
+
         getMovies(activeTab, "",page)
 
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
@@ -73,7 +80,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
                     binding.rvMovies.smoothScrollToPosition(0)
                     page=1
                     getMovies(FAVORITE_TASK, "",page)
-                    activeTab = NOW_PLAYING_TASK
+                    activeTab = FAVORITE_TASK
 
                 }
                 else -> getMovies(POPULAR_TASK, "",page)
@@ -89,7 +96,6 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
         }
 
     }
-
     private fun fetchFavs() {
         runOnUiThread {
             val adapter = MovieAdapter { item, position ->
@@ -116,7 +122,6 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
                     (binding.rvMovies.adapter as MovieAdapter).submitList(t as List<MovieEntity?>?)
                 }
             )
-
         }
     }
 
@@ -156,7 +161,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
             }
         })
 
-        binding.rvMovies.addOnScrollListener(object : PaginationScrollListener(layoutManager) {
+        /*binding.rvMovies.addOnScrollListener(object : PaginationScrollListener(layoutManager) {
             override fun isLastPage(): Boolean {
                 return isLastPage
             }
@@ -168,10 +173,10 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
             override fun loadMoreItems() {
                 if (movieEntity?.size != layoutManager.itemCount)
                   page.plus(page)
-                if(activeTab != NOW_PLAYING_TASK)
+                if(activeTab != FAVORITE_TASK)
                   getMovies(activeTab, "", page.inc())
             }
-        })
+        })*/
     }
 
     override fun onBackPressed() {
@@ -179,6 +184,21 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
             search_view!!.clearQuery()
         else
             super.onBackPressed()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getMovies(activeTab, "",page)
+
+        if (viewModel.getMoviesLiveData.hasActiveObservers())
+            viewModel.getMoviesLiveData.removeObservers(this)
+
+        viewModel.getMoviesLiveData.observe(this@MainActivity, Observer<Resource<TMDBResponse>> {
+            it.let {
+                movieEntity = it?.data?.results
+                (binding.rvMovies.adapter as MovieAdapter).submitList(movieEntity as List<MovieEntity?>?)
+            }
+        })
     }
 
 
