@@ -1,10 +1,10 @@
 package com.murat.movielist.ui.main.main
 
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import android.content.Intent
 import android.content.res.Configuration
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import com.murat.movielist.BuildConfig
 import com.murat.movielist.core.BaseActivity
@@ -109,7 +109,12 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
                 columns = 4
 
-            binding.rvMovies.layoutManager = GridLayoutManager(applicationContext, columns, GridLayoutManager.VERTICAL, false)
+            binding.rvMovies.layoutManager = androidx.recyclerview.widget.GridLayoutManager(
+                applicationContext,
+                columns,
+                androidx.recyclerview.widget.GridLayoutManager.VERTICAL,
+                false
+            )
             binding.rvMovies.adapter = adapter
 
             if (viewModel.db.movieDao().getMovies().hasActiveObservers())
@@ -149,7 +154,12 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
         var columns = 2
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
             columns = 4
-        val layoutManager = GridLayoutManager(applicationContext, columns, GridLayoutManager.VERTICAL, false)
+        val layoutManager = androidx.recyclerview.widget.GridLayoutManager(
+            applicationContext,
+            columns,
+            androidx.recyclerview.widget.GridLayoutManager.VERTICAL,
+            false
+        )
 
         binding.rvMovies.layoutManager = layoutManager
         binding.rvMovies.adapter = adapter

@@ -1,7 +1,7 @@
 package com.murat.movielist.db
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
+import androidx.room.Database
+import androidx.room.RoomDatabase
 import com.murat.movielist.db.dao.MovieDao
 import com.murat.movielist.db.entitiy.MovieEntity
 

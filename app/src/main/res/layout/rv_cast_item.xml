@@ -7,7 +7,7 @@
                 type="com.murat.movielist.ui.main.details.DetailsActivityViewModel" />
 
     </data>
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="106dp"
     android:layout_height="209dp"
@@ -48,5 +48,5 @@
             android:textSize="14sp"
             tools:text="@{viewModel.item.getCharacter}"/>
     </LinearLayout>
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>
 </layout>

@@ -1,6 +1,6 @@
 package com.murat.movielist.di.module
 
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import android.content.Context
 import com.murat.movielist.db.AppDatabase
 import dagger.Module

@@ -1,6 +1,6 @@
 package com.murat.movielist.service.response
 
-import android.databinding.BindingAdapter
+import androidx.databinding.BindingAdapter
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

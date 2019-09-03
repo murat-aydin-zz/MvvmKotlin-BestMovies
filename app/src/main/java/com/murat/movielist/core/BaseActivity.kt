@@ -1,20 +1,19 @@
 package com.murat.movielist.core
 
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import android.content.IntentFilter
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import android.graphics.Color
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.design.widget.BaseTransientBottomBar
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
+import androidx.annotation.LayoutRes
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
 import android.view.WindowManager
 import com.murat.movielist.R
 import com.murat.movielist.utils.ConnectivityReceiver
-import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
 
 abstract class BaseActivity<ViewModel : BaseViewModel, DataBinding : ViewDataBinding>(private val mViewModelClass: Class<ViewModel>) :
     AppCompatActivity() , ConnectivityReceiver.ConnectivityReceiverListener {

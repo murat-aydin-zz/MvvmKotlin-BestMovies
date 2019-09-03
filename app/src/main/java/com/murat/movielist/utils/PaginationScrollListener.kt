@@ -1,8 +1,8 @@
 package com.murat.movielist.utils
 
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * Created by Furkan on 2019-07-02
@@ -17,13 +17,13 @@ abstract class PaginationScrollListener
  *
  * @param layoutManager
  */
-(var layoutManager: LinearLayoutManager) : RecyclerView.OnScrollListener() {
+(var layoutManager: androidx.recyclerview.widget.LinearLayoutManager) : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
 
     abstract fun isLastPage(): Boolean
 
     abstract fun isLoading(): Boolean
 
-    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+    override fun onScrolled(recyclerView: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
 
         val visibleItemCount = layoutManager.childCount

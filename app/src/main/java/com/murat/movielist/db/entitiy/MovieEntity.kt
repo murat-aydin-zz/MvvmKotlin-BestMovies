@@ -1,7 +1,7 @@
 package com.murat.movielist.db.entitiy
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import android.os.Parcel
 import android.os.Parcelable
 import com.murat.movielist.service.response.Movie

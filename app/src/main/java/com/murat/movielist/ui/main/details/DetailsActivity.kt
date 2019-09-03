@@ -1,11 +1,11 @@
 package com.murat.movielist.ui.main.details
 
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.support.design.widget.AppBarLayout
-import android.support.v7.widget.GridLayoutManager
+import com.google.android.material.appbar.AppBarLayout
+import androidx.recyclerview.widget.GridLayoutManager
 import android.transition.Slide
 import android.view.Gravity
 import android.view.MenuItem
@@ -73,7 +73,12 @@ class DetailsActivity :  BaseActivity<DetailsActivityViewModel, ActivityDetailsB
                 startActivity(openYoutube)
             }
         binding.rvTrailers.adapter = adapter
-        binding.rvTrailers.layoutManager = GridLayoutManager(applicationContext, 1, GridLayoutManager.HORIZONTAL, false)
+        binding.rvTrailers.layoutManager = androidx.recyclerview.widget.GridLayoutManager(
+            applicationContext,
+            1,
+            androidx.recyclerview.widget.GridLayoutManager.HORIZONTAL,
+            false
+        )
     }
 
     private fun fetchCredits() {
@@ -110,7 +115,12 @@ class DetailsActivity :  BaseActivity<DetailsActivityViewModel, ActivityDetailsB
 
             }
         binding.castRv.adapter = adapter
-        binding.castRv.layoutManager = GridLayoutManager(applicationContext, 2, GridLayoutManager.HORIZONTAL, false)
+        binding.castRv.layoutManager = androidx.recyclerview.widget.GridLayoutManager(
+            applicationContext,
+            2,
+            androidx.recyclerview.widget.GridLayoutManager.HORIZONTAL,
+            false
+        )
     }
 
     private fun fillUI() {

@@ -3,8 +3,8 @@ package com.murat.movielist.ui.main.persondetail
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.support.design.widget.AppBarLayout
-import android.support.v7.widget.GridLayoutManager
+import com.google.android.material.appbar.AppBarLayout
+import androidx.recyclerview.widget.GridLayoutManager
 import android.transition.Slide
 import android.view.Gravity
 import android.view.View
@@ -12,7 +12,7 @@ import com.murat.movielist.BuildConfig
 import com.murat.movielist.R
 import com.murat.movielist.core.BaseActivity
 import com.murat.movielist.core.Resource
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 
 import com.murat.movielist.databinding.ActivityPersonBinding
 import com.murat.movielist.service.response.Cast

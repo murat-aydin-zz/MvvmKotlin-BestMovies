@@ -1,9 +1,9 @@
 package com.murat.movielist.ui.main.details
 
 import android.app.Application
-import android.arch.lifecycle.MutableLiveData
-import android.databinding.ObservableField
-import android.databinding.adapters.NumberPickerBindingAdapter.setValue
+import androidx.lifecycle.MutableLiveData
+import androidx.databinding.ObservableField
+import androidx.databinding.adapters.NumberPickerBindingAdapter.setValue
 import android.widget.ImageView
 import com.murat.movielist.MyApplication
 import com.murat.movielist.core.*

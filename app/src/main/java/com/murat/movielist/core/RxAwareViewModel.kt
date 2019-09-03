@@ -1,7 +1,7 @@
 package com.murat.movielist.core
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
+import androidx.lifecycle.AndroidViewModel
 import io.reactivex.disposables.CompositeDisposable
 
 open class RxAwareViewModel(app: Application) : AndroidViewModel(app) {

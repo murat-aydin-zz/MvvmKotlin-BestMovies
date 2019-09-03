@@ -12,14 +12,15 @@
         tools:context="com.murat.movielist.ui.main.splash.SplashActivity">
 
 
-    <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/circularImageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/ic_stars_black_24dp"
-            app:civ_border_width="5dp"
-            app:civ_border_color="@color/white"
-    />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/av_splash_animation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_fileName="splash.json" />
 
 </RelativeLayout>
 </layout>

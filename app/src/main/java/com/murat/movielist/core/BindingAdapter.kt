@@ -2,17 +2,12 @@ package com.murat.movielist.core
 
 import android.view.View
 import android.widget.ImageView
-import com.murat.movielist.service.TmdbAPI
-
 import com.squareup.picasso.Picasso
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.*
 
 object BindingAdapter {
     @JvmStatic
-    @android.databinding.BindingAdapter("app:visibility")
-    fun setVisibilty(view: View, isVisible: Boolean) {
+    @androidx.databinding.BindingAdapter("app:visibility")
+    fun setVisibility(view: View, isVisible: Boolean) {
         view.visibility = View.GONE
         if (isVisible) {
             view.visibility = View.VISIBLE
@@ -22,7 +17,7 @@ object BindingAdapter {
     }
 
     @JvmStatic
-    @android.databinding.BindingAdapter("app:setDrawableLink")
+    @androidx.databinding.BindingAdapter("app:setDrawableLink")
     fun setDrawableLink(view: ImageView, link: String?) {
         if (link.isNullOrEmpty())
             return
@@ -30,7 +25,7 @@ object BindingAdapter {
         Picasso.get().load(Constants.NetworkService.POSTER_BASE_URL + link).into(view)
     }
         @JvmStatic
-        @android.databinding.BindingAdapter("app:setDrawableYoutubeLink")
+        @androidx.databinding.BindingAdapter("app:setDrawableYoutubeLink")
         fun setDrawableYoutubeLink(view: ImageView, link: String?) {
             if (link.isNullOrEmpty())
                 return

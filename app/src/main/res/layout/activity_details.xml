@@ -8,20 +8,20 @@
         <variable name="viewModel" type="com.murat.movielist.ui.main.details.DetailsActivityViewModel"/>
     </data>
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/root_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             tools:context="ui.DetailsActivity">
 
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appbar"
                 android:layout_width="match_parent"
                 android:layout_height="210dp"
                 android:fitsSystemWindows="true">
 
-            <android.support.design.widget.CollapsingToolbarLayout
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:id="@+id/collapsing_toolbar_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -41,22 +41,22 @@
                         tools:src="@drawable/tmdb_placeholder_land"
                     />
 
-                <android.support.v7.widget.Toolbar
+                <androidx.appcompat.widget.Toolbar
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
                         app:layout_collapseMode="pin"/>
-            </android.support.design.widget.CollapsingToolbarLayout>
-        </android.support.design.widget.AppBarLayout>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <android.support.v4.widget.NestedScrollView
+        <androidx.core.widget.NestedScrollView
                 android:id="@+id/nested_scrollview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimaryLight"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:descendantFocusability="blocksDescendants"
@@ -298,7 +298,7 @@
                             android:layout_marginBottom="4dp"
                             android:layout_marginTop="4dp">
 
-                       <android.support.v7.widget.RecyclerView
+                       <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rv_trailers"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -322,7 +322,7 @@
                             android:layout_marginBottom="16dp"
                             android:layout_marginTop="8dp">
 
-                        <android.support.v7.widget.RecyclerView
+                        <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/cast_rv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -331,10 +331,10 @@
 
 
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </android.support.v4.widget.NestedScrollView>
+            </androidx.cardview.widget.CardView>
+        </androidx.core.widget.NestedScrollView>
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fav_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -344,7 +344,7 @@
                 app:layout_anchor="@id/nested_scrollview"
                 app:layout_anchorGravity="bottom|right"
                 app:rippleColor="#FFF"/>
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
                 android:id="@+id/poster_card_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -363,7 +363,7 @@
                     android:adjustViewBounds="true"
                     android:transitionName="posterTransition"
                     tools:srcCompat="@drawable/tmdb_placeholder"/>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

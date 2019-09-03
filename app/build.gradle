@@ -10,17 +10,17 @@ android {
         applicationId "com.murat.mvvm_movielist"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionCode 6
+        versionName "1.6"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         flavorDimensions "default"
         multiDexEnabled true
     }
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
-            useProguard true
+            minifyEnabled false
+            shrinkResources false
+            useProguard false
             debuggable false
             buildConfigField 'Boolean', 'LOG_ENABLED', 'false'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -74,17 +74,14 @@ dependencies {
     implementation rootProject.ext.supportLibCardview
     implementation rootProject.ext.supportConstraintLayout
     implementation "com.github.arimorty:floatingsearchview:2.1.1"
-    implementation "com.android.support:recyclerview-v7:28.0.0"
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation "jp.wasabeef:recyclerview-animators:2.3.0"
     //timber
     implementation rootProject.ext.timber
-    implementation rootProject.ext.autoDispose
-    implementation rootProject.ext.autoDisposeAndroidExt
-    implementation rootProject.ext.autoDisposeLifecycle
-    implementation rootProject.ext.autoDisposeArchComponents
+
     //di
     implementation rootProject.ext.dagger
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     kapt rootProject.ext.daggerApt
     //rx
     implementation rootProject.ext.rxJava
@@ -102,12 +99,11 @@ dependencies {
     implementation rootProject.ext.stethoCore
     implementation rootProject.ext.stethoOkHttp
     implementation rootProject.ext.stethoUrlConnection
-
-    //multidex
-    implementation rootProject.ext.multiDex
-
     //picasso
     implementation rootProject.ext.picasso
+
+    //lottie
+    implementation 'com.airbnb.android:lottie:3.0.2'
 
     //crashlytics
     implementation(rootProject.ext.crashlytics) {
@@ -136,10 +132,10 @@ dependencies {
 
     //test
     testImplementation 'junit:junit:4.12'
-    testImplementation "android.arch.core:core-testing:$lifecycle_version"
-    testImplementation "android.arch.persistence.room:testing:$room_version"
+    testImplementation 'androidx.arch.core:core-testing:2.0.0'
+    testImplementation 'androidx.room:room-testing:2.0.0'
 
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.google.code.findbugs'
     })

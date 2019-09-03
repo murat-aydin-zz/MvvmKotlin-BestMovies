@@ -11,7 +11,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/poster_card_view"
         android:layout_width="180dp"
         android:layout_height="270dp"
@@ -29,6 +29,6 @@
             android:transitionName="posterTransition"
             app:setDrawableLink="@{viewModel.item.getPosterPath}"
             />
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>
 </layout>
