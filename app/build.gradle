@@ -10,8 +10,8 @@ android {
         applicationId "com.murat.mvvm_movielist"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 6
-        versionName "1.6"
+        versionCode 8
+        versionName "1.8"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         flavorDimensions "default"
         multiDexEnabled true
@@ -112,6 +112,7 @@ dependencies {
 
     // anko
     implementation rootProject.ext.anko
+    implementation rootProject.ext.ankocommons
     implementation rootProject.ext.couroutines
 
 
