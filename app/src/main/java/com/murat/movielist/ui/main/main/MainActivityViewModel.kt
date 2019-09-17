@@ -25,7 +25,6 @@ class MainActivityViewModel(app: Application) : BaseViewModel(app) {
     fun setModel(item: MovieEntity, position: Int) {
         this.item.set(item)
         this.position = position
-
     }
 
 

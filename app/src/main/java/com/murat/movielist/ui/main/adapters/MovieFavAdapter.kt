@@ -24,6 +24,7 @@ class MovieFavAdapter(private val callback: (MovieEntity, Int) -> Unit) : BaseAd
 
 }) {
     override fun createBinding(parent: ViewGroup, viewType: Int): ViewDataBinding {
+
         val mBinding = DataBindingUtil.inflate<RvMovieFavItemBinding>(
             LayoutInflater.from(parent.context),
             R.layout.rv_movie_fav_item,

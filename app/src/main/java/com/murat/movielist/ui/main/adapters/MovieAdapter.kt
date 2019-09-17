@@ -45,6 +45,7 @@ class MovieAdapter(private val callback: (MovieEntity, Int) -> Unit) : BaseAdapt
     }
 
     override fun bind(binding: ViewDataBinding, position: Int) {
+
         getItem(position)?.let { (binding as RvMovieItemBinding).viewModel?.setModel(it, position) }
         binding.executePendingBindings()
     }

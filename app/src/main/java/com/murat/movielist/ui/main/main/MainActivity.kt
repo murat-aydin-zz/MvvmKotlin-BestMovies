@@ -140,8 +140,12 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
             FAVORITE_TASK -> fetchFavs()
             else -> viewModel.getMovies("popular", BuildConfig.API_TOKEN,"tr",page)
         }
+
+
         if (viewModel.getMoviesLiveData.hasActiveObservers())
             viewModel.getMoviesLiveData.removeObservers(this)
+
+
 
         val adapter =
             MovieAdapter { item, position ->
@@ -151,6 +155,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
                 application.startActivity(intent)
 
             }
+
         var columns = 2
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
             columns = 4
@@ -163,6 +168,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>(
 
         binding.rvMovies.layoutManager = layoutManager
         binding.rvMovies.adapter = adapter
+
 
         viewModel.getMoviesLiveData.observe(this@MainActivity, Observer<Resource<TMDBResponse>> {
             it.let {
