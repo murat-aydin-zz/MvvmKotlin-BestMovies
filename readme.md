@@ -26,6 +26,7 @@ This project was developed with kotlin mvvm for movie listing, reviewing movie d
  - [Retrofit](https://square.github.io/retrofit/)
  - [OkHttp](https://github.com/square/okhttp)
  - [Gson](https://github.com/google/gson)
+ - [Anko](https://github.com/Kotlin/anko)
  - [Paging](https://developer.android.com/topic/libraries/architecture/paging)
  - [Picasso](https://github.com/square/picasso)
  - [Material Design](https://material.io/develop/android/docs/getting-started/)
